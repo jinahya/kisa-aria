@@ -1,5 +1,7 @@
 # kisa-aria
 
+[![Java CI with Maven](https://github.com/jinahya/kisa-aria/actions/workflows/maven.yml/badge.svg)](https://github.com/jinahya/kisa-aria/actions/workflows/maven.yml)
+
 A simple proxy for [KISA ARIA](https://seed.kisa.or.kr/kisa/algorithm/EgovAriaInfo.do) cipher.
 
 ## kr.re.nsri.aria.ARIAEngine
