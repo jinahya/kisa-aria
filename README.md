@@ -1,6 +1,7 @@
 # kisa-aria
 
 [![Java CI with Maven](https://github.com/jinahya/kisa-aria/actions/workflows/maven.yml/badge.svg)](https://github.com/jinahya/kisa-aria/actions/workflows/maven.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jinahya_kisa-aria&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jinahya_kisa-aria)
 
 A simple proxy for [KISA ARIA](https://seed.kisa.or.kr/kisa/algorithm/EgovAriaInfo.do) cipher.
 
