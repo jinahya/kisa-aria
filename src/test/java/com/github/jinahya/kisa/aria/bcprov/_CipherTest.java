@@ -3,7 +3,6 @@ package com.github.jinahya.kisa.aria.bcprov;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bouncycastle.util.encoders.Hex;
 
 import javax.crypto.KeyGenerator;
 import java.io.BufferedReader;
@@ -28,12 +27,12 @@ abstract class _CipherTest {
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    static void acceptTestVectorBlocks(final String name, final Consumer<? super List<byte[]>> consumer)
+    static void acceptTestVectorBlocks(final String name, final Consumer<? super List<String>> consumer)
             throws IOException {
         try (var resource = _CipherTest.class.getResourceAsStream(name)) {
             assertThat(resource).isNotNull();
             try (var reader = new BufferedReader(new InputStreamReader(resource))) {
-                final var lines = new ArrayList<byte[]>();
+                final var lines = new ArrayList<String>();
                 for (String line; (line = reader.readLine()) != null; ) {
                     if (line.trim().isEmpty()) {
                         consumer.accept(lines);
@@ -41,11 +40,19 @@ abstract class _CipherTest {
                         continue;
                     }
                     final var value = line.substring(line.lastIndexOf('=') + 1).trim();
-                    log.debug("value: {}", value);
-                    lines.add(Hex.decode(value));
+                    lines.add(value);
                 }
             }
         }
+    }
+
+    static List<List<String>> getTestVectorBlocks(final String name)
+            throws IOException {
+        final var blocks = new ArrayList<List<String>>();
+        acceptTestVectorBlocks(name, b -> {
+            blocks.add(new ArrayList<>(b));
+        });
+        return blocks;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
